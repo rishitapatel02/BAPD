@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./config/db");
 const adminRoutes = require("./routes/adminRoutes");
+const playerRoutes = require("./routes/playerRoutes");
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ app.get("/", (req, res) => {
   res.send("BAPD Backend is Running!");
 });
 app.use("/api/admin", adminRoutes);
+app.use("/api/player", playerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
