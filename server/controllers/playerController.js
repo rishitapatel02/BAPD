@@ -115,10 +115,17 @@ const updatePlayer = (req, res) => {
                 });
             }
 
-            res.json({
-                success:true,
-                message:"Player updated successfully"
-            });
+            if (result.affectedRows === 0) {
+    return res.status(404).json({
+        success: false,
+        message: "Player not found"
+    });
+}
+
+res.json({
+    success: true,
+    message: "Player updated successfully"
+});
 
         }
     );
@@ -139,10 +146,17 @@ const deletePlayer = (req, res) => {
             });
         }
 
-        res.json({
-            success: true,
-            message: "Player deleted successfully"
-        });
+        if (result.affectedRows === 0) {
+    return res.status(404).json({
+        success: false,
+        message: "Player not found"
+    });
+}
+
+res.json({
+    success: true,
+    message: "Player deleted successfully"
+});
 
     });
 
